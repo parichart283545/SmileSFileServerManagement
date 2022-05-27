@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="S3UploaderModel">
+  <DataContextMoniker Name="/S3UploaderModelDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8b8af27a-abb4-4f6c-9c5b-113892a1a63f" absoluteBounds="0.5, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/S3UploaderModelDataContext/UploaderConfig" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a2d7d656-a6d1-4e07-9db3-918cf1ae274c" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

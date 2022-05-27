@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="S3UploaderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="usp_DocumentFilelist_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_UploaderConfig_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParameterName" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="S3UploaderModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="S3UploaderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="S3UploaderDataContext" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="usp_DocumentFilelist_Select" ReturnType="Collection(S3UploaderModel.usp_DocumentFilelist_Select_Result)" />
+          <FunctionImport Name="usp_UploaderConfig_Select" ReturnType="Collection(S3UploaderModel.usp_UploaderConfig_Select_Result)">
+          <Parameter Name="ParameterName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_DocumentFilelist_Select_Result">
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="FileName" Nullable="true" />
+          <Property Type="String" Name="PhysicalPath" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_UploaderConfig_Select_Result">
+          <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="255" />
+          <Property Type="Double" Name="ValueNumber" Nullable="true" />
+          <Property Type="String" Name="ValueString" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ValueDateTime" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="ValueBoolean" Nullable="true" />
+          <Property Type="String" Name="Remark" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="S3UploaderModelStoreContainer" CdmEntityContainer="S3UploaderDataContext" >
+          <FunctionImportMapping FunctionImportName="usp_DocumentFilelist_Select" FunctionName="S3UploaderModel.Store.usp_DocumentFilelist_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="S3UploaderModel.usp_DocumentFilelist_Select_Result">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PhysicalPath" ColumnName="PhysicalPath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_UploaderConfig_Select" FunctionName="S3UploaderModel.Store.usp_UploaderConfig_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="S3UploaderModel.usp_UploaderConfig_Select_Result">
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="ValueNumber" ColumnName="ValueNumber" />
+                <ScalarProperty Name="ValueString" ColumnName="ValueString" />
+                <ScalarProperty Name="ValueDateTime" ColumnName="ValueDateTime" />
+                <ScalarProperty Name="ValueBoolean" ColumnName="ValueBoolean" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

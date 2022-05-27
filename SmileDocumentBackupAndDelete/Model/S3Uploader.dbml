@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="S3Uploader" Class="S3UploaderDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=147.50.133.169;Initial Catalog=S3Uploader;Persist Security Info=True;User ID=devdba;MultipleActiveResultSets=True" SettingsObjectName="SmileDocumentBackupAndDelete.Properties.Settings" SettingsPropertyName="S3UploaderConnectionString1" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.usp_UploaderConfig_Select" Method="usp_UploaderConfig_Select">
+    <Parameter Name="ParameterName" Parameter="parameterName" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="usp_UploaderConfig_SelectResult">
+      <Column Name="ParameterName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ValueNumber" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ValueString" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ValueDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ValueBoolean" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_DocumentFileDelete_Update" Method="usp_DocumentFileDelete_Update">
+    <Parameter Name="Code" Parameter="code" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="usp_DocumentFileDelete_UpdateResult">
+      <Column Name="Result" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_Uploader_Log_Insert" Method="usp_Uploader_Log_Insert">
+    <Parameter Name="Document_ID" Parameter="document_ID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FILENAME" Parameter="fILENAME" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ErrorMessage" Parameter="errorMessage" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="DocType" Parameter="docType" Type="System.String" DbType="NVarChar(MAX)" />
+    <ElementType Name="usp_Uploader_Log_InsertResult">
+      <Column Name="Result" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_DocumentFilelistS3_Update" Method="usp_DocumentFilelistS3_Update">
+    <Parameter Name="Code" Parameter="code" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="S3IsUploaded" Parameter="s3IsUploaded" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="S3Bucket" Parameter="s3Bucket" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3StorageType" Parameter="s3StorageType" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3Key" Parameter="s3Key" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="usp_DocumentFilelistS3_UpdateResult">
+      <Column Name="Result" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_DocumentFileDelete_Select" Method="usp_DocumentFileDelete_Select">
+    <ElementType Name="usp_DocumentFileDelete_SelectResult">
+      <Column Name="Code" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PhysicalPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="S3Key" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="S3StorageType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="S3StorageTypeUpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="S3UploadedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="S3Bucket" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_SmileDoclistS3_Update" Method="usp_SmileDoclistS3_Update" IsComposable="true">
+    <Parameter Name="AttachmentID" Parameter="attachmentID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="S3IsUploaded" Parameter="s3IsUploaded" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="S3Bucket" Parameter="s3Bucket" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3StorageType" Parameter="s3StorageType" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3Key" Parameter="s3Key" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.usp_SmileDoclistDelete_Update" Method="usp_SmileDoclistDelete_Update">
+    <Parameter Name="AttachmentID" Parameter="attachmentID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="S3IsUploaded" Parameter="s3IsUploaded" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="S3Bucket" Parameter="s3Bucket" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3StorageType" Parameter="s3StorageType" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="S3Key" Parameter="s3Key" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="usp_SmileDoclistDelete_UpdateResult">
+      <Column Name="Result" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.usp_SmileDoclistDelete_Select" Method="usp_SmileDoclistDelete_Select">
+    <ElementType Name="usp_SmileDoclistDelete_SelectResult">
+      <Column Name="AttachmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhysicalPath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="S3Key" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="S3StorageType" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="S3StorageTypeUpdateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="S3UploadedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="S3Bucket" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
